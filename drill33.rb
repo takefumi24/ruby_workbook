@@ -1,0 +1,25 @@
+# Railsを使わずにHTML, CSSでサイトを作成する際は、HTMLファイルからlinkタグを使ってCSSファイルを読み込む設定を記述します。
+# しかし、Railsの場合各ビューでCSSの読み込みの設定を書く必要はありません。
+
+# ①なぜ必要なCSSやJavaScriptが読み込まれるのか、「アセットパイプライン」「Sprockets」「マニフェストファイル」という用語を用いて説明してください。
+"「アセット」と呼ばれるCSSやJavasScriptといったHTMLに付随したファイルを、ブラウザ上で読み込める機能「アセットパイプライン」が存在するから。
+RailsにおけるCSSやJavaScriptの呼び出しは、マニフェストファイルから読み込みたいものをまとめて設定し、
+複数存在するであろうerbファイルからはマニフェストファイルだけを読み込むことで、CSSやJavaScriptの呼び出しを代わりにやってもらうという仕組みになっている。
+この仕組みをSprocketsと言い、Railsには「Sprockets」というjemが自動的にGemfileに追加される。"
+
+# ②①を踏まえると、作成したCSSやJavaScriptのファイルはどこに配置すれば良いか説明してください。
+"CSS→app/assets/stylesheets のフォルダにファイルを置く。
+JavaScript→app/assets/javaScripts"
+
+
+# 解答
+"①Railsにはアセットパイプラインという仕組みが用意されており、複数のCSSやJavaScriptファイルは一つにまとめて圧縮される。この機能はSprocketsというGemが担っている。
+各ビューが表示される際、必ずapplication.html.erbが読み込まれるが、その中にstylesheet_link_tagの記述があり、それによってapp/assets/stylesheets/application.cssが呼び出される。
+application.cssはマニフェストファイルといわれ、このファイルから各CSSファイルを呼び出す仕組みになっている。
+JavaScriptも同様。
+
+②cssの場合
+app/assets/stylesheets のフォルダにファイルを置く。
+
+JavaScriptの場合
+app/assets/javaScripts のフォルダに置く"
